@@ -12,23 +12,21 @@ with open('precipitation.json') as file_json:
 
 months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 with open('result.json','w') as file_result:
-    result = []
+    totalMonthPrec = []
     for month in months:
-        prec_monthly = 0
+        MonthPrec = 0
         for i in prec_seattle:
             if f'2010-{month}' in i['date']:
-                prec_monthly += i['value']
-        result.append(prec_monthly)
-    json.dump(result,file_result,indent=1)
-#print(result)
+                MonthPrec += i['value']
+        totalMonthPrec.append(MonthPrec)
+    json.dump(totalMonthPrec,file_result,indent=1)
+#print(totalMonthPrec)
 
 # --- part 2 ---
-annual_sum = sum(result)
+totalYearPrec = sum(totalMonthPrec)
 
 with open('result.json','w') as file_result:
-    prec_relative = []
-    for month in result:
-        prec_relative.append([month, month/annual_sum])
-    json.dump(prec_relative, file_result, indent=1)
-
-# --- part 3 ---
+    relativeMonthPrec = []
+    for month in totalMonthPrec:
+        relativeMonthPrec.append([month, month/totalYearPrec])
+    json.dump(relativeMonthPrec, file_result, indent=1)
