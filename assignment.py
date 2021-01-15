@@ -19,8 +19,8 @@ with open('result.json','w') as file_result:
             if month in i['date']:
                 prec_monthly += i['value']
         result.append({month: prec_monthly})
-        json.dump(result,file_result, indent=1)
+    json.dump(result,file_result,indent=1)
 
 # --- part 2 ---
-for month in result:
-    print(result[month])
+#for month in result:
+#    print(result[month])
